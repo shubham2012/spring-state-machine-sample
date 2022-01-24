@@ -2,7 +2,7 @@ package com.statemachine.sample.constants;
 
 public enum OrderStatus {
     CREATED,
-    PROCESSING_IN_WAREHOUSE,
+    PROCESSING,
     PACKED,
     SHIPPED,
     OUT_FOR_DELIVERY,

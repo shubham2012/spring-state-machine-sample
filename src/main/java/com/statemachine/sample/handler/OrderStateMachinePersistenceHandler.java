@@ -8,10 +8,12 @@ import com.statemachine.sample.domain.OrderEntry;
 import com.statemachine.sample.domain.OrderUpdate;
 import com.statemachine.sample.domain.OrderUpdateResponse;
 import com.statemachine.sample.exception.GuardHackException;
+import com.statemachine.sample.service.OrderService;
 import com.statemachine.sample.transition.OrderStateMachineTransitionConfiguration;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.statemachine.StateContext;
@@ -38,17 +40,12 @@ public class OrderStateMachinePersistenceHandler extends StateMachineInterceptor
 
     private final OrderStateMachineTransitionConfiguration orderStateMachineTransitionConfiguration;
 
+    private final OrderService orderService;
+
     @Override
     public OrderUpdateResponse handleEvent(OrderUpdate orderUpdate) throws Exception {
-
-        //set Order, Ideally this should be fetched from repository
-        String orderId = orderUpdate.getOrderId();
-        OrderEntry orderEntry = new OrderEntry();
-        orderEntry.setOrderId(orderId);
-        orderEntry.setStatus(OrderStatus.CREATED);
-        orderEntry.setOrderSupplierType(OrderSupplierType.ON_HAND);
-
         //validate if order exists or not and accordingly return the response
+        OrderEntry orderEntry = orderService.getById(orderUpdate.getOrderId());
         //validate();
 
         OrderUpdateResponse orderUpdateResponse = invokeStateMachine(orderUpdate, orderUpdate.getEvent(),
@@ -57,8 +54,7 @@ public class OrderStateMachinePersistenceHandler extends StateMachineInterceptor
         return orderUpdateResponse;
     }
 
-    private OrderUpdateResponse invokeStateMachine(OrderUpdate orderUpdate, OrderUpdateEvent event, OrderEntry orderEntry)
-            throws Exception {
+    private OrderUpdateResponse invokeStateMachine(OrderUpdate orderUpdate, OrderUpdateEvent event, OrderEntry orderEntry) {
         OrderUpdateResponse response = new OrderUpdateResponse(orderUpdate);
         try {
             StateMachine<OrderStatus, OrderUpdateEvent> stateMachine =

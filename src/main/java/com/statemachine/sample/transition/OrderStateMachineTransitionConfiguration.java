@@ -66,8 +66,8 @@ public class OrderStateMachineTransitionConfiguration
         transitions
                 .withExternal()
                 .source(OrderStatus.CREATED)
-                .event(OrderUpdateEvent.RECEIVED_IN_WAREHOUSE)
-                .target(OrderStatus.PROCESSING_IN_WAREHOUSE)
+                .event(OrderUpdateEvent.PROCESS_IN_WAREHOUSE)
+                .target(OrderStatus.PROCESSING)
                 .guard(context.getBean(ValidateOnHandGuard.class))
                 .action(context.getBean(ProcessInWarehouseAction.class));
     }

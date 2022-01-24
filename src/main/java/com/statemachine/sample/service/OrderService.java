@@ -1,6 +1,5 @@
 package com.statemachine.sample.service;
 
-import com.statemachine.sample.constants.MessageConstant;
 import com.statemachine.sample.constants.OrderStatus;
 import com.statemachine.sample.constants.OrderSupplierType;
 import com.statemachine.sample.constants.OrderType;
@@ -12,21 +11,14 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class OrderService {
 
     private static Map<String, OrderEntry> orderRepository = new HashMap<>();
 
     public OrderEntry getById(String orderId) throws Exception {
-        OrderEntry orderEntry = orderRepository.get(orderId);
-        if (Objects.isNull(orderEntry)){
-            throw new Exception(MessageConstant.ORDER_NOT_FOUND.get(orderId));
-        } else {
-            return orderEntry;
-        }
+        return orderRepository.get(orderId);
     }
 
 
