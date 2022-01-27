@@ -1,28 +1,22 @@
 package com.statemachine.sample.service;
 
-import com.statemachine.sample.constants.EventStatus;
-import com.statemachine.sample.constants.OrderStatus;
-import com.statemachine.sample.constants.OrderUpdateEvent;
 import com.statemachine.sample.domain.ActivityEntry;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class ActivityLoggingService {
 
+    /**
+     * Simply save the activity
+     * @param entry
+     * @return
+     */
     public ActivityEntry addActivity(ActivityEntry entry){
         //save activity
+        log.info("Saved activity: {}", entry);
         return entry;
     }
 
-    public ActivityEntry addActivity(String orderId, OrderStatus from, OrderService to, OrderUpdateEvent event, EventStatus eventStatus, String remarks){
-       ActivityEntry entry = new ActivityEntry();
-       entry.setRemarks(remarks);
-       entry.setOrderId(orderId);
-       entry.setEvent(event);
-       entry.setEventStatus(eventStatus);
-       entry.setFromStatus(from);
-       entry.setToStatus(to);
-       //save activity
-       return entry;
-    }
 }

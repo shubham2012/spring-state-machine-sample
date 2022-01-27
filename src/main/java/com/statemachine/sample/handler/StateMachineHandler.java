@@ -9,7 +9,7 @@ import org.springframework.statemachine.transition.Transition;
 import org.springframework.statemachine.transition.TransitionKind;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface StateMachinePersistenceHandler {
+public interface StateMachineHandler {
 
     @Transactional(rollbackFor = Exception.class)
     OrderUpdateResponse handleEvent(OrderUpdate orderUpdate) throws Exception;

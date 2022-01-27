@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import com.statemachine.sample.constants.EventStatus;
 import com.statemachine.sample.constants.OrderStatus;
 import com.statemachine.sample.constants.OrderUpdateEvent;
-import com.statemachine.sample.service.OrderService;
 import lombok.Data;
+
+import java.time.LocalDateTime;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -17,12 +18,14 @@ public class ActivityEntry {
 
     private OrderStatus fromStatus;
 
-    private OrderService toStatus;
+    private OrderStatus toStatus;
 
     private OrderUpdateEvent event;
 
     private EventStatus eventStatus;
 
     private String remarks;
+
+    private LocalDateTime transitionTime;
 
 }

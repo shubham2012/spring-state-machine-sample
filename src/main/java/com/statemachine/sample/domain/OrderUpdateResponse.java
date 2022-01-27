@@ -25,8 +25,6 @@ public class OrderUpdateResponse {
 
     private String exceptionMessage;
 
-    private String sourcePath;
-
     public OrderUpdateResponse(OrderUpdate orderUpdate) {
         this.orderUpdate = orderUpdate;
     }

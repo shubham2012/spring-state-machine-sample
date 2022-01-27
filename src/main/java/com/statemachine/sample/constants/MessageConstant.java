@@ -10,7 +10,7 @@ public enum MessageConstant {
     STATE_MACHINE_STOPPED("State machine stopped: {0}"),
     STATE_MACHINE_ERROR("State machine: {0} has error: {1}"),
     STATE_EXISTED("State Existed {0}"),
-    STATE_ENTERED("Entered in state 0{}"),
+    STATE_ENTERED("Entered in state {0}"),
     STATE_CHANGED("State changed from {0} to {1}"),
     EVENT_NOT_ACCEPTED("Event not accepted {0} {1} {2}"),
     ERROR_DURING_EXECUTION("Error during state machine execution "),
