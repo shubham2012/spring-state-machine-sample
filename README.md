@@ -18,7 +18,7 @@ then just the file StateMachineSampleApplication
 
 
 ## Validate the state machine by API call 
-###Request
+### Request
 curl --location --request POST 'http://localhost:80/state-machine-service/state-machine/invoke' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
@@ -29,7 +29,8 @@ curl --location --request POST 'http://localhost:80/state-machine-service/state-
 "remarks": "Dispatched by vendor in bulk",
 "location": "Test Location"
 }'
-###Response
+
+### Response
 {
 "orderUpdate": {
 "orderId": "CREATE_NORMAL_JIT",
@@ -44,7 +45,7 @@ curl --location --request POST 'http://localhost:80/state-machine-service/state-
 }
 
 
-###Request
+### Request
 curl --location --request POST 'http://localhost:80/state-machine-service/state-machine/invoke' \
 --header 'Content-Type: application/json' \
 --header 'Accept: application/json' \
@@ -55,7 +56,8 @@ curl --location --request POST 'http://localhost:80/state-machine-service/state-
 "remarks": "Dispatched by vendor in bulk",
 "location": "Test Location"
 }'
-###Response
+
+### Response
 {
 "orderUpdateResponseCode": "TRANSITION_NOT_ALLOWED",
 "orderStatusPreEvent": "CREATED",
